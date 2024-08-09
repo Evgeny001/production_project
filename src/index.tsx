@@ -1,5 +1,6 @@
 import {render} from "react-dom";
+import {Counter} from "./components/Counter";
 render(
-    <div>Heeeeeello</div>,
+    <div><Counter/></div>,
     document.getElementById('root')
 )
