@@ -1,6 +1,16 @@
 import webpack from "webpack";
+import MiniCssExtractPlugin from "mini-css-extract-plugin";
 
 export function buildLoaders(): webpack.RuleSetRule[] {
+
+    const cssLoader =       {
+        test: /\.s[ac]ss$/i,
+        use: [
+            MiniCssExtractPlugin.loader,
+            "css-loader",
+            "sass-loader",
+        ],
+    }
 
     const typescriptLoader =         {
         test: /\.tsx?$/,
@@ -8,6 +18,8 @@ export function buildLoaders(): webpack.RuleSetRule[] {
         exclude: /node_modules/,
     }
     return [
-        typescriptLoader
+        typescriptLoader,
+        cssLoader
     ]
 }
+
