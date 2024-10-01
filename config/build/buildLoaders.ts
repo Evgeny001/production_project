@@ -10,9 +10,14 @@ export function buildLoaders(options: BuildOptions): webpack.RuleSetRule[] {
             options.isDev? 'style-loader' :  MiniCssExtractPlugin.loader,
             {loader: "css-loader",
                 options: {
-                    modules: true,
-                    auto: (resPath: string) => Boolean(resPath.includes('.module'))
-                }},
+                    modules: {
+                        auto: (resPath: string) => Boolean(resPath.includes('.module')),
+                        localIdentName: options.isDev
+                            ? "[path][name]__[local]--[hash:base64:5]"
+                            : "[hash:base64:8]"
+                    }
+                }
+                },
             "sass-loader",
         ],
     }
