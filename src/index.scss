@@ -1,8 +1,8 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+@import "styles/reset";
+@import "styles/variables/global";
+@import "styles/themes/normal";
+@import "styles/themes/dark";
+
 .app {
-  font-size: 30px;
+  font: var(--font-m);
 }
