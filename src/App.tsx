@@ -1,16 +1,14 @@
-import React, {Suspense, useContext} from 'react';
+import React, {Suspense} from 'react';
 import {Link, Route, Routes} from 'react-router-dom';
 import './index.scss'
 import './index.scss'
 import {AboutPageAsync} from "./pages/AboutPage/AboutPage.async";
 import {MainPageAsync} from "./pages/MainPage/MainPage.async";
-import {Theme, ThemeContext} from "./theme/ThemeContext";
+import {useTheme} from "./theme/useTheme";
+
 
 const App = () => {
-    const {theme, setTheme} = useContext(ThemeContext)
-    const toggleTheme = () => {
-        setTheme(theme === Theme.DARK ? Theme.LIGHT : Theme.DARK);
-    }
+const {theme, toggleTheme} = useTheme()
     return (
         <div className={`app ${theme}`}>
             <button onClick={toggleTheme}>Toggle</button>
