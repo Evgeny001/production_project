@@ -1,2 +1,3 @@
-import {ThemeSwitcher} from "widgets/ThemeSwitcher/ui/ThemeSwitcher";
-export {ThemeSwitcher};
+import { ThemeSwitcher } from 'widgets/ThemeSwitcher/ui/ThemeSwitcher';
+
+export { ThemeSwitcher };

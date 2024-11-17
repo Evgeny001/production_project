@@ -1,9 +1,9 @@
-import React, {ButtonHTMLAttributes, FC} from 'react';
-import {classNames} from "shared/lib/classNames/classNames";
-import cls from "./Button.module.scss"
+import React, { ButtonHTMLAttributes, FC } from 'react';
+import { classNames } from 'shared/lib/classNames/classNames';
+import cls from './Button.module.scss';
 
 export enum ThemeButton {
-    CLEAR = "clear",
+    CLEAR = 'clear',
 }
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
@@ -12,9 +12,12 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 export const Button: FC<ButtonProps> = (props) => {
-    const {className, children, theme, ...otherProps} = props
+    const {
+        className, children, theme, ...otherProps
+    } = props;
     return (
-        <button className={classNames(cls.Button, {[cls[theme]]: true}, [className])}{...otherProps}>
+        // eslint-disable-next-line react/jsx-props-no-spreading
+        <button type="button" className={classNames(cls.Button, { [cls[theme]]: true }, [className])} {...otherProps}>
             {children}
         </button>
     );
