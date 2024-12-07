@@ -23,6 +23,20 @@ Clear.args = {
     theme: ButtonTheme.CLEAR,
 };
 
+export const OutlineSizeL = Template.bind({});
+OutlineSizeL.args = {
+    children: 'Text',
+    theme: ButtonTheme.OUTLINE,
+    size: ButtonSize.L
+};
+
+export const OutlineSizeXL = Template.bind({});
+OutlineSizeXL.args = {
+    children: 'Text',
+    theme: ButtonTheme.OUTLINE,
+    size: ButtonSize.XL
+};
+
 export const Outline = Template.bind({});
 Outline.args = {
     children: 'Text',
