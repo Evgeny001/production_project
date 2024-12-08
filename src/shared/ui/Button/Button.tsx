@@ -35,12 +35,12 @@ export const Button: FC<ButtonProps> = (props) => {
     const mods: Record<string, boolean> = {
         [cls[theme]]: true,
         [cls.square]: square,
-        [cls[size]]: true
-    }
-    console.log(mods)
+        [cls[size]]: true,
+    };
+    console.log(mods);
     return (
         // eslint-disable-next-line react/jsx-props-no-spreading
-        <button type="button" className={classNames(cls.Button,mods, [className])} {...otherProps}>
+        <button type="button" className={classNames(cls.Button, mods, [className])} {...otherProps}>
             {children}
         </button>
     );
