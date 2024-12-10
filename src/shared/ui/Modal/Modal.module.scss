@@ -37,3 +37,10 @@ padding: 20px;
     transform: scale(1);
   }
 }
+
+.isClosing {
+
+  .content {
+    transform: scale(0.2);
+  }
+}
