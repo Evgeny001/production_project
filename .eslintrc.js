@@ -45,6 +45,7 @@ module.exports = {
             jsx: 'never',
             svg: 'always',
             async: 'always',
+            scss: 'always',
         }],
         'import/no-extraneous-dependencies': 'off',
         'no-underscore-dangle': 'off',
