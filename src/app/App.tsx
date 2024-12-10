@@ -5,7 +5,7 @@ import { classNames } from 'shared/lib/classNames/classNames';
 import { AppRouter } from 'app/providers/router';
 import { Navbar } from 'widgets/Navbar';
 import { Sidebar } from 'widgets/Sidebar';
-import {Modal} from "shared/ui/Modal/Modal";
+import { Modal } from 'shared/ui/Modal/Modal';
 
 function App() {
     const { theme } = useTheme();
@@ -14,9 +14,11 @@ function App() {
         <div className={classNames('app', {}, [theme])}>
             <Suspense fallback="">
                 <Navbar />
-                <button onClick={()=> setIsOpen(true)}>
+                {/* eslint-disable-next-line i18next/no-literal-string */}
+                <button type="button" onClick={() => setIsOpen(true)}>
                     toggle
                 </button>
+                {/* eslint-disable-next-line i18next/no-literal-string */}
                 <Modal isOpen={isOpen} onClose={() => setIsOpen(false)}>
                     dsfjdoghjbjfcklxnvdklxcngjkbfdlcvnbklcxfgndfkjngjkdfnxgfd
                 </Modal>
