@@ -1,30 +1,35 @@
 import React, { useCallback } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
-import { Modal } from 'shared/ui/Modal/Modal';
 import { useTranslation } from 'react-i18next';
 import { Button, ButtonTheme } from 'shared/ui/Button/Button';
+import { LoginModal } from 'features/AuthByUsername';
 import cls from './Navbar.module.scss';
 
 export function Navbar() {
     const { t } = useTranslation();
     const [isAuthModal, setIsAuthModal] = React.useState(false);
 
-    const onToggleModal = useCallback(() => {
-        setIsAuthModal((prev) => !prev);
+    const onCloseModal = useCallback(() => {
+        setIsAuthModal(false);
+    }, []);
+
+    const onShowModal = useCallback(() => {
+        setIsAuthModal(true);
     }, []);
     return (
         <div className={classNames(cls.navbar)}>
             <Button
                 className={cls.links}
                 theme={ButtonTheme.CLEAR_INVERTED}
-                onClick={onToggleModal}
+                onClick={onShowModal}
             >
                 {t('войти')}
             </Button>
             {/* eslint-disable-next-line */}
-            <Modal isOpen={isAuthModal} onClose={onToggleModal}>
-                dsfjdoghjbjfcklxnvdklxcngjkbfdlcvnbklcxfgndfkjngjkdfnxgfd
-            </Modal>
+            <LoginModal
+                isOpen={isAuthModal}
+                onClose={onCloseModal}
+            />
         </div>
     );
 }
