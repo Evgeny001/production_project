@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { Input } from 'shared/ui/Input/Input';
 import { useDispatch, useSelector } from 'react-redux';
 import { memo, useCallback } from 'react';
+import { loginByUsername } from '../../model/services/loginByUsername/loginByUsername';
 import { getLoginState } from '../../model/selectors/getLoginState/getLoginState';
 import { loginActions } from '../../model/slice/loginSlice';
 import cls from './LoginForm.module.scss';
@@ -15,7 +16,9 @@ interface LoginFormProps {
 export const LoginForm = memo(({ className }: LoginFormProps) => {
     const { t } = useTranslation();
     const dispatch = useDispatch();
-    const { username, password } = useSelector(getLoginState);
+    const {
+        username, password, isLoading, error,
+    } = useSelector(getLoginState);
 
     const onChangeUsername = useCallback((value: string) => {
         dispatch(loginActions.setUsername(value));
@@ -25,8 +28,13 @@ export const LoginForm = memo(({ className }: LoginFormProps) => {
         dispatch(loginActions.setPassword(value));
     }, [dispatch]);
 
+    const onLoginClick = useCallback(() => {
+        dispatch(loginByUsername({ username, password }));
+    }, [dispatch, password, username]);
+
     return (
         <div className={classNames(cls.LoginForm, {}, [])}>
+            {error && <div>{error}</div>}
             <Input
                 autoFocus
                 type="text"
@@ -42,7 +50,12 @@ export const LoginForm = memo(({ className }: LoginFormProps) => {
                 onChange={onChangePassword}
                 value={password}
             />
-            <Button theme={ButtonTheme.OUTLINE} className={cls.loginBtn}>
+            <Button
+                theme={ButtonTheme.OUTLINE}
+                className={cls.loginBtn}
+                onClick={onLoginClick}
+                disabled={isLoading}
+            >
                 {t('Войти')}
             </Button>
         </div>
