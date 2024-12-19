@@ -23,7 +23,7 @@ export function Navbar() {
                 theme={ButtonTheme.CLEAR_INVERTED}
                 onClick={onShowModal}
             >
-                {t('войти')}
+                {t('Войти')}
             </Button>
             {/* eslint-disable-next-line */}
             <LoginModal
