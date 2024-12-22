@@ -9,5 +9,9 @@
   "сокращенно язык": "En",
   "Главная": "Main",
   "О сайте": "About us",
-  "Войти": "Sign in"
+  "Войти": "Sign in",
+  "Форма авторизации": "Authorization Form",
+  "Введите username": "Enter username",
+  "Введите пароль": "Enter password",
+  "Вы ввели неверный логин или пароль": "You have entered an incorrect username or password"
 }
