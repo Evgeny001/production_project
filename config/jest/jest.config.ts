@@ -23,7 +23,7 @@ export default {
     testEnvironment: 'jsdom',
     // An array of regexp pattern strings used to skip coverage collection
     coveragePathIgnorePatterns: [
-        '/node_modules/',
+        '\\\\node_modules\\\\',
     ],
     moduleFileExtensions: [
         'js',
@@ -33,9 +33,9 @@ export default {
         'json',
         'node',
     ],
-    // moduleDirectories: [
-    //     'node_modules',
-    // ],
+    moduleDirectories: [
+        'node_modules',
+    ],
     modulePaths: [
         '<rootDir>src',
     ],
