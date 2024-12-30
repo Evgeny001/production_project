@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { memo, useCallback } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { useTranslation } from 'react-i18next';
 import { Button, ButtonTheme } from 'shared/ui/Button/Button';
@@ -8,7 +8,7 @@ import { useSelector } from 'react-redux';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import cls from './Navbar.module.scss';
 
-export function Navbar() {
+export const Navbar = memo(() => {
     const { t } = useTranslation();
     const [isAuthModal, setIsAuthModal] = React.useState(false);
     const authData = useSelector(getUserAuthData);
@@ -58,4 +58,4 @@ export function Navbar() {
             )}
         </div>
     );
-}
+});

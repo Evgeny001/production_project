@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { ThemeSwitcher } from 'widgets/ThemeSwitcher';
 import { LangSwitcher } from 'widgets/LangSwitcher/LangSwitcher';
@@ -11,7 +11,7 @@ interface SidebarProps {
     className?: string
 }
 
-export function Sidebar({ className }: SidebarProps) {
+export const Sidebar = memo(({ className }: SidebarProps) => {
     const [collapsed, setCollapsed] = React.useState(false);
 
     const onToggle = () => {
@@ -49,4 +49,4 @@ export function Sidebar({ className }: SidebarProps) {
             </div>
         </div>
     );
-}
+});
