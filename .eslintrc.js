@@ -30,10 +30,11 @@ module.exports = {
         'react/jsx-filename-extension': [2, { extensions: ['.js', '.jsx', '.tsx'] }],
         'import/no-unresolved': 'off',
         'import/prefer-default-export': 'off',
-        'no-unused-vars': ['warn', {
-            varsIgnorePattern: '^_', // Игнорирует переменные, начинающиеся с '_'
-            argsIgnorePattern: '^_', // Игнорирует параметры функций, начинающиеся с '_'
-        }],
+        // 'no-unused-vars': ['warn', {
+        //     varsIgnorePattern: '^_|^(Currency|Country)$',
+        //     argsIgnorePattern: '^_', // Игнорирует параметры функций, начинающиеся с '_'
+        // }],
+        'no-unused-vars': 'off',
         'react/require-default-props': 'off',
         'react/react-in-jsx-scope': 'off',
         'react/jsx-props-no-spreading': 'off',
@@ -55,6 +56,7 @@ module.exports = {
         'react-hooks/rules-of-hooks': 'error', // Checks rules of Hooks
         'react-hooks/exhaustive-deps': 'error', // Checks effect dependencies
         'no-param-reassign': 'off',
+        'react/display-name': 'off',
     },
     globals: {
         __IS_DEV__: true,
