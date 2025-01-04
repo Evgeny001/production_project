@@ -2,7 +2,7 @@ import {
     ButtonHTMLAttributes, memo, ReactNode,
 } from 'react';
 
-import { classNames } from 'shared/lib/classNames/classNames';
+import { classNames, Mods } from 'shared/lib/classNames/classNames';
 import cls from './Button.module.scss';
 
 export enum ButtonTheme {
@@ -31,14 +31,14 @@ export const Button = memo((props: ButtonProps) => {
     const {
         className,
         children,
-        theme,
+        theme = ButtonTheme.OUTLINE,
         square,
         disabled,
         size = ButtonSize.M,
         ...otherProps
     } = props;
 
-    const mods: Record<string, boolean> = {
+    const mods: Mods = {
         [cls[theme]]: true,
         [cls.square]: square,
         [cls[size]]: true,
@@ -46,7 +46,6 @@ export const Button = memo((props: ButtonProps) => {
     };
 
     return (
-        // eslint-disable-next-line react/jsx-props-no-spreading
         <button
             type="button"
             className={classNames(cls.Button, mods, [className])}
