@@ -1,7 +1,6 @@
 import { classNames } from 'shared/lib/classNames/classNames';
 import { useTranslation } from 'react-i18next';
 import { Text, TextAlign, TextTheme } from 'shared/ui/Text/Text';
-import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 import { Input } from 'shared/ui/Input/Input';
 import { Loader } from 'shared/ui/Loader/Loader';
 import { Profile } from '../../model/types/profile';
@@ -12,6 +11,11 @@ interface ProfileCardProps {
     data?: Profile;
     isLoading?: boolean;
     error?: string;
+    onChangeFirstname: (value?: string) => void;
+    onChangeLastname: (value?: string) => void;
+    onChangeCity: (value?: string) => void;
+    onChangeAge: (value?: string) => void;
+    readOnly?: boolean
 }
 
 export const ProfileCard = (props: ProfileCardProps) => {
@@ -20,6 +24,11 @@ export const ProfileCard = (props: ProfileCardProps) => {
         data,
         isLoading,
         error,
+        onChangeFirstname,
+        onChangeLastname,
+        onChangeCity,
+        onChangeAge,
+        readOnly,
     } = props;
     const { t } = useTranslation('profile');
 
@@ -46,22 +55,34 @@ export const ProfileCard = (props: ProfileCardProps) => {
 
     return (
         <div className={classNames(cls.ProfileCard, {}, [className])}>
-            <div className={cls.header}>
-                <Text text={t('Профиль')} align={TextAlign.CENTER} />
-                <Button className={cls.editBtn} theme={ButtonTheme.OUTLINE}>
-                    {t('Редактировать')}
-                </Button>
-            </div>
             <div className={cls.data}>
                 <Input
                     value={data?.first}
                     placeholder={t('Ваше имя')}
                     className={cls.input}
+                    onChange={onChangeFirstname}
+                    readOnly={readOnly}
                 />
                 <Input
                     value={data?.lastname}
                     placeholder={t('Ваша фамилия')}
                     className={cls.input}
+                    onChange={onChangeLastname}
+                    readOnly={readOnly}
+                />
+                <Input
+                    value={data?.age}
+                    placeholder={t('Ваш возраст')}
+                    className={cls.input}
+                    onChange={onChangeAge}
+                    readOnly={readOnly}
+                />
+                <Input
+                    value={data?.city}
+                    placeholder={t('Город')}
+                    className={cls.input}
+                    onChange={onChangeCity}
+                    readOnly={readOnly}
                 />
             </div>
         </div>
