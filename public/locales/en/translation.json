@@ -16,5 +16,7 @@
   "Вы ввели неверный логин или пароль": "You have entered an incorrect username or password",
   "Произошла ошибка при загрузке профиля": "An error occurred while loading a profile",
   "Попробуйте обновить станицу": "Try refreshing the page",
-  "Отменить": "Cancel"
+  "Отменить": "Cancel",
+  "Укажите валюту": "Specify currency",
+  "Укажите страну": "Specify country"
 }
