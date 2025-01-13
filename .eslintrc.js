@@ -58,9 +58,11 @@ module.exports = {
         'no-param-reassign': 'off',
         'react/display-name': 'off',
         'no-undef': 'off',
+        'max-len': ['error', { code: 120 }],
     },
     globals: {
         __IS_DEV__: true,
         __API__: true,
+        __PROJECT__: true,
     },
 };

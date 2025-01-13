@@ -4,8 +4,9 @@ import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 import { BuildOptions } from './types/config';
 
-// eslint-disable-next-line max-len
-export function buildPlugins({ paths, isDev, apiUlr }:BuildOptions): webpack.WebpackPluginInstance[] {
+export function buildPlugins({
+    paths, isDev, apiUlr, project,
+}:BuildOptions): webpack.WebpackPluginInstance[] {
     const plugins = [
         new HTMLWebpackPlugin({
             template: paths.html,
@@ -19,6 +20,7 @@ export function buildPlugins({ paths, isDev, apiUlr }:BuildOptions): webpack.Web
         new webpack.DefinePlugin({
             __IS_DEV__: JSON.stringify(isDev),
             __API__: JSON.stringify(apiUlr),
+            __PROJECT__: JSON.stringify(project),
         }),
     ];
 
