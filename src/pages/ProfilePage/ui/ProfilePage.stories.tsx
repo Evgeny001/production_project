@@ -5,8 +5,6 @@ import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator/ThemeDeco
 import { Theme } from 'app/providers/ThemeProvider';
 import { Country } from 'entities/Country';
 import { Currency } from 'entities/Currency';
-// eslint-disable-next-line import/extensions
-import avatar from 'shared/assets/tests/storybook.jpg';
 
 export default {
     title: 'pages/ProfilePage',
@@ -29,7 +27,6 @@ Normal.decorators = [StoreDecorator({
             lastname: 'Petrov',
             first: 'Ivan',
             currency: Currency.RUB,
-            avatar,
         },
     },
 })];
@@ -45,7 +42,6 @@ Dark.decorators = [ThemeDecorator(Theme.DARK), StoreDecorator({
             lastname: 'Petrov',
             first: 'Ivan',
             currency: Currency.RUB,
-            avatar,
         },
     },
 })];
