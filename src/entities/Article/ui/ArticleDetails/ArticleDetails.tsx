@@ -7,11 +7,15 @@ import { memo, useEffect } from 'react';
 import { fetchArticleById } from 'entities/Article/model/services/fetchArticleById';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { useSelector } from 'react-redux';
+import { Text, TextAlign, TextTheme } from 'shared/ui/Text/Text';
+import { useTranslation } from 'react-i18next';
+import { Skeleton } from 'shared/ui/Skeleton/Skeleton';
 import {
     getArticleDetailsData,
-    getArticleDetailsError, getArticleDetailsIsLoading,
+    getArticleDetailsError,
 } from '../../model/selector/articleDetailsData';
 import { articleDetailsReducer } from '../../model/slice/articleDetailsSlice';
+import cls from './ArticleDetails.module.scss';
 
 interface ArticleDetailsProps {
     className?: string;
@@ -24,8 +28,9 @@ const reducers: ReducersList = {
 
 export const ArticleDetails = memo((props : ArticleDetailsProps) => {
     const { className, id } = props;
-
-    const isLoading = useSelector(getArticleDetailsIsLoading);
+    const { t } = useTranslation();
+    // const isLoading = useSelector(getArticleDetailsIsLoading);
+    const isLoading = true;
     const error = useSelector(getArticleDetailsError);
     const data = useSelector(getArticleDetailsData);
 
@@ -38,11 +43,20 @@ export const ArticleDetails = memo((props : ArticleDetailsProps) => {
 
     if (isLoading) {
         content = (
-            <div>Loading...</div>
+            <div>
+                <Skeleton className={cls.avatar} width={200} height={200} border="50%" />
+                <Skeleton className={cls.title} width={300} height={32} />
+                <Skeleton className={cls.skeleton} width="100%" height={200} />
+                <Skeleton className={cls.skeleton} width="100%" height={200} />
+            </div>
         );
     } else if (error) {
         content = (
-            <div>error</div>
+            <Text
+                title={t('Произошла ошибка при загрузке страницы')}
+                theme={TextTheme.ERROR}
+                align={TextAlign.CENTER}
+            />
         );
     } else {
         content = (
@@ -52,7 +66,7 @@ export const ArticleDetails = memo((props : ArticleDetailsProps) => {
 
     return (
         <DynamicModuleLoader reducers={reducers} removeAfterUnmount>
-            <div className={classNames('', {}, [className])}>
+            <div className={classNames(cls.ArticleDetails, {}, [className])}>
                 {content}
             </div>
         </DynamicModuleLoader>
