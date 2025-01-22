@@ -7,12 +7,19 @@ import { memo, useEffect } from 'react';
 import { fetchArticleById } from 'entities/Article/model/services/fetchArticleById';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { useSelector } from 'react-redux';
-import { Text, TextAlign, TextTheme } from 'shared/ui/Text/Text';
+import {
+    Text, TextAlign, TextSize, TextTheme,
+} from 'shared/ui/Text/Text';
 import { useTranslation } from 'react-i18next';
 import { Skeleton } from 'shared/ui/Skeleton/Skeleton';
+import { Avatar } from 'shared/ui/Avatar/Avatar';
+import EyeIcon from 'shared/assets/icons/eye-20-20.svg';
+import CalendarIcon from 'shared/assets/icons/calendar-20-20.svg';
+import { Icon } from 'shared/ui/Icon/Icon';
 import {
     getArticleDetailsData,
     getArticleDetailsError,
+    getArticleDetailsIsLoading,
 } from '../../model/selector/articleDetailsData';
 import { articleDetailsReducer } from '../../model/slice/articleDetailsSlice';
 import cls from './ArticleDetails.module.scss';
@@ -29,10 +36,9 @@ const reducers: ReducersList = {
 export const ArticleDetails = memo((props : ArticleDetailsProps) => {
     const { className, id } = props;
     const { t } = useTranslation();
-    // const isLoading = useSelector(getArticleDetailsIsLoading);
-    const isLoading = true;
+    const isLoading = useSelector(getArticleDetailsIsLoading);
     const error = useSelector(getArticleDetailsError);
-    const data = useSelector(getArticleDetailsData);
+    const article = useSelector(getArticleDetailsData);
 
     const dispatch = useAppDispatch();
     useEffect(() => {
@@ -43,12 +49,12 @@ export const ArticleDetails = memo((props : ArticleDetailsProps) => {
 
     if (isLoading) {
         content = (
-            <div>
+            <>
                 <Skeleton className={cls.avatar} width={200} height={200} border="50%" />
                 <Skeleton className={cls.title} width={300} height={32} />
                 <Skeleton className={cls.skeleton} width="100%" height={200} />
                 <Skeleton className={cls.skeleton} width="100%" height={200} />
-            </div>
+            </>
         );
     } else if (error) {
         content = (
@@ -60,7 +66,28 @@ export const ArticleDetails = memo((props : ArticleDetailsProps) => {
         );
     } else {
         content = (
-            <div>ArticleDetails</div>
+            <>
+                <div className={cls.avatarWrapper}>
+                    <Avatar
+                        size={200}
+                        src={article?.img}
+                        className={cls.avatar}
+                    />
+                </div>
+                <Text
+                    title={article?.title}
+                    text={article?.subtitle}
+                    size={TextSize.L}
+                />
+                <div className={cls.articleInfo}>
+                    <Icon Svg={EyeIcon} className={cls.icon} />
+                    <Text text={String(article?.views)} />
+                </div>
+                <div className={cls.articleInfo}>
+                    <Icon Svg={CalendarIcon} className={cls.icon} />
+                    <Text text={article?.createdAt} />
+                </div>
+            </>
         );
     }
 

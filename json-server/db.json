@@ -15,11 +15,13 @@
     {
       "id": "1",
       "title": "Javascript news",
-      "subtitle": "Что нвого в ОЫ за 2024",
-      "img": "https://ru.wikipedia.org/wiki/JavaScript#/media/%D0%A4%D0%B0%D0%B9%D0%BB:Unofficial_JavaScript_logo_2.svg",
+      "subtitle": "Что нвого в JS за 2024",
+      "img": "https://pic.rutubelist.ru/user/3b/27/3b2758ad5492a76b578f7ee072e4e894.jpg",
       "views": 1024,
       "createdAt": "26.04.2023",
-      "type": ["IT"],
+      "type": [
+        "IT"
+      ],
       "blocks": [
         {
           "id": "1",
@@ -117,8 +119,8 @@
     }
   ],
   "profile": {
-    "first": "Evgeny",
-    "lastname": "Lukashevich",
+    "first": "dddddd",
+    "lastname": "Lukвввввввввввввввashevich",
     "age": 33,
     "currency": "RUB",
     "country": "Belarus",
