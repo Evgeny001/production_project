@@ -65,9 +65,10 @@ describe('profileSlice.test', () => {
         const state: DeepPartial<ProfileSchema> = {
             isLoading: true,
         };
+        const articleId = 'test-article-id'; // Передаём строку, как ожидается
         expect(profileReducer(
             state as ProfileSchema,
-            updateProfileData.fulfilled(data, ''),
+            updateProfileData.fulfilled(data, '', articleId),
         )).toEqual({
             isLoading: false,
             validateError: undefined,
