@@ -2,19 +2,17 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { getUserAuthData } from 'entities/User';
 import { ThunkConfig } from 'app/providers/StoreProvider';
 import { Comment } from 'entities/Comment';
-import { getAddCommentFormText } from 'features/addCommentForm/model/selector/addCommentFormSelectors';
 import { getArticleDetailsData } from 'entities/Article/model/selector/articleDetailsData';
-import { addCommentFormAction } from 'features/addCommentForm/model/slices/addCommentFormSlice';
+import { fetchCommentsByArticleId } from '../../services/fetchCommentsByArticleId/fetchCommentsByArticleId';
 
-export const sendComment = createAsyncThunk<Comment, void, ThunkConfig<string>>(
-    'addCommentForm/sendComment',
-    async (authData, thunkAPI) => {
+export const addCommentForArticle = createAsyncThunk<Comment, string, ThunkConfig<string>>(
+    'ArticleDetailsPage/addCommentForArticle',
+    async (text, thunkAPI) => {
         const {
             dispatch, extra, rejectWithValue, getState,
         } = thunkAPI;
 
         const userData = getUserAuthData(getState());
-        const text = getAddCommentFormText(getState());
         const article = getArticleDetailsData(getState());
 
         if (!userData || !text || !article) {
@@ -31,7 +29,8 @@ export const sendComment = createAsyncThunk<Comment, void, ThunkConfig<string>>(
             if (!response.data) {
                 throw new Error();
             }
-            dispatch(addCommentFormAction.setText(''));
+            dispatch(fetchCommentsByArticleId(article.id));
+
             return response.data;
         } catch (e) {
             return rejectWithValue('error');
