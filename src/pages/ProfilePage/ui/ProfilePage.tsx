@@ -42,7 +42,6 @@ const ProfilePage = memo(({ className }: ProfilePageProps) => {
     const readOnly = useSelector(getProfileReadonly);
     const validateErrors = useSelector(getProfileValidateErrors);
     const { id } = useParams<{id: string}>();
-
     const validateErrorTranslates = {
         [ValidateProfileError.SERVER_ERROR]: t('Серверная ошибка при сохранении'),
         [ValidateProfileError.NO_DATA]: t('Данные не указаны'),
