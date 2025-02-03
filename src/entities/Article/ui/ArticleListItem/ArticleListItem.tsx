@@ -5,6 +5,7 @@ import { Text } from 'shared/ui/Text/Text';
 import { Icon } from 'shared/ui/Icon/Icon';
 import EyeIcon from 'shared/assets/icons/eye-20-20.svg';
 import { Card } from 'shared/ui/Card/Card';
+import { useHover } from 'shared/lib/hooks/useHover/useHover';
 import cls from './ArticleListItem.module.scss';
 
 interface ArticleListItemProps {
@@ -16,6 +17,8 @@ interface ArticleListItemProps {
 export const ArticleListItem = memo((props: ArticleListItemProps) => {
     const { className, article, view } = props;
 
+    const [isHover, bindHover] = useHover();
+    console.log(isHover);
     if (view === ArticleView.BIG) {
         return (
             <div className={classNames(cls.ArticleListItem, {}, [className, cls[view]])}>
@@ -25,7 +28,7 @@ export const ArticleListItem = memo((props: ArticleListItemProps) => {
     }
 
     return (
-        <div className={classNames(cls.ArticleListItem, {}, [className, cls[view]])}>
+        <div {...bindHover} className={classNames(cls.ArticleListItem, {}, [className, cls[view]])}>
             <Card>
                 <div className={cls.imageWrapper}>
                     <img src={article.img} alt={article.title} className={cls.img} />
