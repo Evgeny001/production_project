@@ -1,5 +1,5 @@
 import { classNames } from 'shared/lib/classNames/classNames';
-import { memo } from 'react';
+import { memo, useCallback } from 'react';
 import { Article, ArticleView } from 'entities/Article';
 import { Text } from 'shared/ui/Text/Text';
 import { Icon } from 'shared/ui/Icon/Icon';
@@ -9,6 +9,8 @@ import { useHover } from 'shared/lib/hooks/useHover/useHover';
 import { Avatar } from 'shared/ui/Avatar/Avatar';
 import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 import { ArticleBlockType, ArticleTextBlock } from 'entities/Article/model/types/article';
+import { useNavigate } from 'react-router-dom';
+import { RoutePath } from 'shared/config/routeConfig/routeConfig';
 import { ArticleTextBlockComponent } from '../ArticleTextBlockComponent/ArticleTextBlockComponent';
 import cls from './ArticleListItem.module.scss';
 
@@ -20,9 +22,12 @@ interface ArticleListItemProps {
 
 export const ArticleListItem = memo((props: ArticleListItemProps) => {
     const { className, article, view } = props;
-
+    const navigate = useNavigate();
     const [isHover, bindHover] = useHover();
-    console.log(isHover);
+
+    const onOpenArticle = useCallback(() => {
+        navigate(RoutePath.article_details + article.id);
+    }, [article.id, navigate]);
 
     const types = <Text text={article.type.join(', ')} className={cls.types} />;
     const views = (
@@ -52,7 +57,7 @@ export const ArticleListItem = memo((props: ArticleListItemProps) => {
                         <ArticleTextBlockComponent block={textBlock} className={cls.textBlock} />
                     )}
                     <div className={cls.footer}>
-                        <Button theme={ButtonTheme.OUTLINE}>
+                        <Button theme={ButtonTheme.OUTLINE} onClick={onOpenArticle}>
                             Читать далее..
                         </Button>
                         {views}
@@ -64,7 +69,7 @@ export const ArticleListItem = memo((props: ArticleListItemProps) => {
 
     return (
         <div {...bindHover} className={classNames(cls.ArticleListItem, {}, [className, cls[view]])}>
-            <Card>
+            <Card onClick={onOpenArticle}>
                 <div className={cls.imageWrapper}>
                     <img src={article.img} alt={article.title} className={cls.img} />
                     <Text text={article.createdAt} className={cls.data} />
