@@ -1,7 +1,7 @@
 import { classNames } from 'shared/lib/classNames/classNames';
 import { useTranslation } from 'react-i18next';
 import { memo } from 'react';
-import { Article, ArticleList } from 'entities/Article';
+import { Article, ArticleList, ArticleView } from 'entities/Article';
 
 interface ArticlePageProps {
     className?: string;
@@ -18,6 +18,11 @@ const ArticlePage = (props: ArticlePageProps) => {
         img: 'https://pic.rutubelist.ru/user/3b/27/3b2758ad5492a76b578f7ee072e4e894.jpg',
         views: 1024,
         createdAt: '26.04.2023',
+        user: {
+            id: '1',
+            username: 'Ann',
+            avatar: 'https://pic.rutubelist.ru/user/3b/27/3b2758ad5492a76b578f7ee072e4e894.jpg',
+        },
         type: [
             'IT',
         ],
@@ -85,7 +90,19 @@ const ArticlePage = (props: ArticlePageProps) => {
 
     return (
         <div className={classNames('cls.ArticlePage', {}, [className])}>
-            <ArticleList articles={[article]} />
+            <ArticleList
+                view={ArticleView.BIG}
+                articles={
+                    new Array(16)
+                        .fill(0)
+                        .map((item, index) => (
+                            {
+                                ...article,
+                                id: String(index),
+                            }
+                        ))
+                }
+            />
         </div>
     );
 };

@@ -2,6 +2,7 @@ import { classNames } from 'shared/lib/classNames/classNames';
 import { memo } from 'react';
 import { ArticleListItem } from '../ArticleListItem/ArticleListItem';
 import { Article, ArticleView } from '../../model/types/article';
+import cls from './ArticleList.module.scss';
 
 interface ArticleListProps {
     className?: string;
@@ -22,11 +23,12 @@ export const ArticleList = memo((props: ArticleListProps) => {
         <ArticleListItem
             article={article}
             view={view}
+            className={cls.card}
         />
     );
 
     return (
-        <div className={classNames('ArticleList', {}, [className])}>
+        <div className={classNames(cls.ArticleList, {}, [className, cls[view]])}>
             {articles.length > 0
                 ? articles.map(renderArticle)
                 : null}
