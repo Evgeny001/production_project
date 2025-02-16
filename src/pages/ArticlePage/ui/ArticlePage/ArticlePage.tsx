@@ -91,6 +91,7 @@ const ArticlePage = (props: ArticlePageProps) => {
     return (
         <div className={classNames('cls.ArticlePage', {}, [className])}>
             <ArticleList
+                isLoading
                 view={ArticleView.BIG}
                 articles={
                     new Array(16)

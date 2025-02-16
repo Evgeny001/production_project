@@ -59,6 +59,7 @@ module.exports = {
         'react/display-name': 'off',
         'no-undef': 'off',
         'max-len': ['error', { code: 120 }],
+        'react/no-array-index-key': 'off',
     },
     globals: {
         __IS_DEV__: true,
