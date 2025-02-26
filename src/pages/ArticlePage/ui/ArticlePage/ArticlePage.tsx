@@ -42,6 +42,7 @@ const ArticlePage = (props: ArticlePageProps) => {
 
     useInitialEffect(() => {
         dispatch(fetchArticlesList());
+        dispatch(articlesPageActions.initState());
     });
 
     return (
