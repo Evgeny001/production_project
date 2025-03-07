@@ -8,6 +8,7 @@ import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect/useInitialEf
 import { useSelector } from 'react-redux';
 import { ArticleViewSelector } from 'features/ArticleViewSelector/ArticleViewSelector';
 import { Page } from 'shared/ui/Page/Page';
+import { fetchNextArticlesList } from 'pages/ArticlePage/model/services/fetchNextArticlesList/fetchNextArticlesList';
 import { fetchArticlesList } from '../../model/services/fetchArticlesList/fetchArticlesList';
 import {
     getArticlesPageError, getArticlesPageHasMore,
@@ -36,21 +37,14 @@ const ArticlePage = (props: ArticlePageProps) => {
     const isLoading = useSelector(getArticlesPageIsLoading);
     const error = useSelector(getArticlesPageError);
     const view = useSelector(getArticlesPageView);
-    const page = useSelector(getArticlesPageNum);
-    const hasMore = useSelector(getArticlesPageHasMore);
 
     const onChangeView = useCallback((view: ArticleView) => {
         dispatch(articlesPageActions.setView(view));
     }, [dispatch]);
 
     const onLoadNextPart = useCallback(() => {
-        if (hasMore && !isLoading) {
-            dispatch(articlesPageActions.setPage(page + 1));
-            dispatch(fetchArticlesList({
-                page: page + 1,
-            }));
-        }
-    }, [dispatch, hasMore, isLoading, page]);
+        dispatch(fetchNextArticlesList());
+    }, [dispatch]);
 
     useInitialEffect(() => {
         dispatch(articlesPageActions.initState());
@@ -58,6 +52,11 @@ const ArticlePage = (props: ArticlePageProps) => {
             page: 1,
         }));
     });
+
+    if (error) {
+        // eslint-disable-next-line no-unused-expressions
+        'Error';
+    }
 
     return (
         <DynamicModuleLoader reducers={reducers}>
