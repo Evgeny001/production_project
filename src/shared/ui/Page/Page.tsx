@@ -8,10 +8,11 @@ import cls from './Page.module.scss';
 interface PageProps {
     className?: string;
     children?: ReactNode;
+    onScrollEnd?: () => void
 }
 
 export const Page = memo((props: PageProps) => {
-    const { className, children } = props;
+    const { className, children, onScrollEnd } = props;
 
     const wrapperRef = useRef() as MutableRefObject<HTMLDivElement>;
     const triggerRef = useRef() as MutableRefObject<HTMLDivElement>;
@@ -19,7 +20,7 @@ export const Page = memo((props: PageProps) => {
     useInfiniteScroll({
         wrapperRef,
         triggerRef,
-        callback: () => console.log('callback'),
+        callback: onScrollEnd,
     });
 
     return (
