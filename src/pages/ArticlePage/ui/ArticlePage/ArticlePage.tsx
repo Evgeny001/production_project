@@ -8,11 +8,11 @@ import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect/useInitialEf
 import { useSelector } from 'react-redux';
 import { ArticleViewSelector } from 'features/ArticleViewSelector/ArticleViewSelector';
 import { Page } from 'shared/ui/Page/Page';
-import { fetchNextArticlesList } from 'pages/ArticlePage/model/services/fetchNextArticlesList/fetchNextArticlesList';
-import { fetchArticlesList } from '../../model/services/fetchArticlesList/fetchArticlesList';
+import { fetchNextArticlesList } from '../../model/services/fetchNextArticlesList/fetchNextArticlesList';
+import { initArticlesPage } from '../../model/services/initArticlesPage/initArticlesPage';
 import {
-    getArticlesPageError, getArticlesPageHasMore,
-    getArticlesPageIsLoading, getArticlesPageNum,
+    getArticlesPageError,
+    getArticlesPageIsLoading,
     getArticlesPageView,
 } from '../../model/selector/articlesPageSelectors';
 import {
@@ -47,10 +47,7 @@ const ArticlePage = (props: ArticlePageProps) => {
     }, [dispatch]);
 
     useInitialEffect(() => {
-        dispatch(articlesPageActions.initState());
-        dispatch(fetchArticlesList({
-            page: 1,
-        }));
+        dispatch(initArticlesPage());
     });
 
     if (error) {
