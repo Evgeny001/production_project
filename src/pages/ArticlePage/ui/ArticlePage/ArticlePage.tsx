@@ -20,6 +20,7 @@ import {
     articlesPageReducer,
     getArticles,
 } from '../../model/slices/ArticlesPageSlice/articlesPageSlice';
+import cls from './ArticlesPage.module.scss';
 
 interface ArticlePageProps {
     className?: string;
@@ -56,10 +57,10 @@ const ArticlePage = (props: ArticlePageProps) => {
     }
 
     return (
-        <DynamicModuleLoader reducers={reducers}>
+        <DynamicModuleLoader reducers={reducers} removeAfterUnmount={false}>
             <Page
                 onScrollEnd={onLoadNextPart}
-                className={classNames('cls.ArticlePage', {}, [className])}
+                className={classNames(cls.ArticlesPage, {}, [className])}
             >
                 <ArticleViewSelector view={view} onViewClick={onChangeView} />
                 <ArticleList

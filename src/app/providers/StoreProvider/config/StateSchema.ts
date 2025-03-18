@@ -10,10 +10,12 @@ import { ArticleDetailsSchema } from 'entities/Article/model/types/articleDetail
 import { ArticleDetailsCommentsSchema } from 'pages/ArticleDetailsPage';
 import { addCommentFormSchema } from 'features/addCommentForm';
 import { ArticlesPageSchema } from 'pages/ArticlePage';
+import { ScrollSaveSchema } from 'widgets/ScrollSave';
 
 export interface StateSchema {
     counter: CounterSchema
     user: UserSchema
+    scrollSave: ScrollSaveSchema
     // async reducers
     loginForm?: LoginScheme
     profile?: ProfileSchema
